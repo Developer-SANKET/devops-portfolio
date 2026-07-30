@@ -186,7 +186,7 @@ function Skills() {
       icon: <Network className="w-5 h-5 text-primary" />,
       items: [
         { name: "AWS (EC2, S3, EKS, Lambda, Bedrock)", icon: <Cloud className="w-4 h-4" /> },
-        { name: "Azure (AKS, VNet, App Services)", icon: <CloudCog className="w-4 h-4" /> },
+        { name: "Azure (ACR, VM, AKS, Blob Storage, Functions, App Service, VNet)", icon: <CloudCog className="w-4 h-4" /> },
         { name: "Kubernetes", icon: <SiKubernetes /> },
         { name: "Docker & Docker Compose", icon: <SiDocker /> }
       ]
@@ -197,7 +197,7 @@ function Skills() {
       items: [
         { name: "Jenkins", icon: <SiJenkins /> },
         { name: "GitHub Actions", icon: <SiGithubactions /> },
-        { name: "Argo CD", icon: <Server className="w-4 h-4" /> },
+        { name: "Argo CD / GitOps", icon: <Server className="w-4 h-4" /> },
         { name: "Helm", icon: <SiHelm /> }
       ]
     },
@@ -206,9 +206,9 @@ function Skills() {
       icon: <Layers className="w-5 h-5 text-primary" />,
       items: [
         { name: "Terraform", icon: <SiTerraform /> },
+        { name: "Bicep (Azure IaC)", icon: <Layers className="w-4 h-4" /> },
         { name: "Prometheus", icon: <SiPrometheus /> },
-        { name: "Grafana", icon: <SiGrafana /> },
-        { name: "CloudWatch / Log Analytics", icon: <Activity className="w-4 h-4" /> }
+        { name: "Grafana", icon: <SiGrafana /> }
       ]
     },
     {
@@ -298,13 +298,6 @@ function Certifications() {
           ))}
         </div>
 
-        <div className="mt-8 max-w-2xl">
-          <div className="p-6 rounded-lg bg-card/50 border border-border/50">
-            <h3 className="text-sm font-mono text-primary mb-3">Education</h3>
-            <p className="font-semibold">Bachelor of Computer Application (BCA)</p>
-            <p className="text-muted-foreground text-sm mt-1">Savitribai Phule Pune University &bull; 2019 – 2022 &bull; GPA: 8.0</p>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -318,14 +311,14 @@ function Projects() {
       tech: ["AWS", "Azure", "OpenTelemetry", "Grafana", "Python", "LLM"]
     },
     {
-      title: "GitOps-Driven Kubernetes Platform",
-      description: "Designed a production-grade EKS + AKS multi-cluster GitOps platform using ArgoCD, Helm, and Terraform with zero-downtime deployments for 200+ microservices.",
-      tech: ["EKS", "AKS", "ArgoCD", "Terraform", "Helm"]
+      title: "GitOps AKS Deployment Platform",
+      description: "Built a production-grade AKS platform serving 150+ microservices using GitOps principles. Provisioned infrastructure with Terraform and Bicep, managed container images via ACR, deployed workloads with Helm and ArgoCD, configured VNet peering and private endpoints, and set up end-to-end observability with Prometheus and Grafana. PostgreSQL and Redis deployed as StatefulSets.",
+      tech: ["ACR", "AKS", "Terraform", "Redis", "PostgreSQL", "Helm", "ArgoCD", "GitOps", "VNet", "Prometheus", "Grafana"]
     },
     {
-      title: "AI-Assisted Incident Response Bot",
-      description: "Integrated GPT-4 into PagerDuty workflows to auto-triage alerts, suggest runbooks, and draft incident summaries — cut median response time from 18min to 4min.",
-      tech: ["TypeScript", "GPT-4", "PagerDuty API", "AWS Lambda"]
+      title: "Kubernetes-based MCP Server for Internal Teams",
+      description: "Developed an internal MCP (Model Context Protocol) server running on Kubernetes, powered by Claude Sonnet, that gives engineering teams natural-language access to cluster operations — query pod logs, describe deployments, check resource usage, and trigger rollbacks via chat. Reduced mean time to diagnose incidents by 55% and eliminated the need for direct kubectl access for 80% of on-call queries.",
+      tech: ["Kubernetes", "Claude Sonnet", "MCP", "Python", "Helm", "RBAC", "AWS Bedrock"]
     },
     {
       title: "Serverless ML Pipeline on AWS",
@@ -387,7 +380,9 @@ function Experience() {
         "Managed and deployed cloud infrastructure across AWS and Azure (EC2, S3, VPC, IAM, AKS, App Services, Azure Functions, Load Balancers).",
         "Automated infrastructure provisioning with Terraform — reduced manual deployment effort by 40–50% across dev/staging/prod.",
         "Built and maintained CI/CD pipelines using Jenkins, GitHub Actions, and Azure DevOps Pipelines for build, test, and deploy automation.",
-        "Containerized applications with Docker and deployed on Kubernetes (EKS/AKS) — Pods, Deployments, Ingress, ConfigMaps, cluster admin.",
+        "Containerized applications with Docker and orchestrated on Kubernetes (EKS/AKS) — Pods, Deployments, StatefulSets, Ingress, Services, ConfigMaps, and Secrets across multi-namespace environments.",
+        "Implemented Kubernetes RBAC policies, network policies, and resource quotas to enforce least-privilege access and workload isolation across teams.",
+        "Managed AWS services including EC2 Auto Scaling, S3 lifecycle policies, IAM roles/policies, VPC networking, ALB, and Route 53 for production workloads.",
         "Set up monitoring and alerting with CloudWatch, Prometheus, Grafana, and Azure Log Analytics.",
         "Authored Python and Bash automation scripts on Rocky Linux, reducing manual operations by 70%.",
         "Collaborated with Dev, QA, and Platform teams to cut release time by 40% and resolve production infrastructure issues."
