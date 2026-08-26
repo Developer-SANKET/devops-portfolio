@@ -267,7 +267,10 @@ function Skills() {
 function Certifications() {
   const certifications = [
     { name: "AZ-900 — Azure Fundamentals", issuer: "Microsoft" },
-    { name: "AZ-104 — Azure Administrator Associate", issuer: "Microsoft" }
+    { name: "AZ-104 — Azure Administrator Associate", issuer: "Microsoft" },
+    { name: "AZ-400 — Azure DevOps Expert", issuer: "Microsoft" },
+    { name: "AZ-305 — Azure Soultion architecture", issuer: "Microsoft" },
+    { name: "GH-200 - GitHub Action", issuer: "Microsoft" },
   ];
 
   return (
