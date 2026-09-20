@@ -309,10 +309,10 @@ function Certifications() {
 function Projects() {
   const projects = [
     {
-      title: "Multi-Cloud AI Observability Platform",
-      description: "Built a unified observability layer across AWS and Azure using OpenTelemetry + Grafana, with an LLM-powered anomaly summarization engine that reduces MTTR by 60%.",
-      tech: ["AWS", "Azure", "OpenTelemetry", "Grafana", "Python", "LLM"]
-    },
+  title: "AWS Self-Healing Infrastructure with Amazon Bedrock",
+  description: "Event-driven AIOps platform where Amazon Bedrock reasons about incident root cause, but never touches production directly — every recommendation passes a deterministic safety gate before any remediation executes. A single AIOps control plane (CloudWatch → EventBridge → Lambda → Bedrock → Safety Gate → DynamoDB) is architected to work across EC2, EKS, and ECS, with only the remediation adapter swapping underneath (SSM / Kubernetes API / ECS API). On EKS, the design specifically distinguishes routine Pod self-healing from real incidents like CrashLoopBackOff — so AI intervenes only where Kubernetes' own automation falls short.",
+  tech: ["AWS", "Amazon Bedrock", "AWS Lambda", "Amazon EventBridge", "Amazon CloudWatch", "Amazon EKS", "Kubernetes API", "Amazon ECS", "AWS Systems Manager (SSM)", "Amazon SNS", "Amazon DynamoDB", "FastAPI", "Python", "Terraform"]
+   },
     {
       title: "GitOps AKS Deployment Platform",
       description: "Built a production-grade AKS platform serving 150+ microservices using GitOps principles. Provisioned infrastructure with Terraform and Bicep, managed container images via ACR, deployed workloads with Helm and ArgoCD, configured VNet peering and private endpoints, and set up end-to-end observability with Prometheus and Grafana. PostgreSQL and Redis deployed as StatefulSets.",
@@ -392,14 +392,18 @@ function Experience() {
       ]
     },
     {
-      title: "Java Developer",
+      title: "Software Engineer (Cloud & DevOps)",
       company: "INDSAC Softech — Remote",
       period: "Apr 2023 — Mar 2024",
       bullets: [
-        "Developed Java web applications using Spring MVC, Spring Boot, and REST APIs for scalable backend services.",
-        "Implemented database operations using Hibernate ORM with MySQL — CRUD and query optimization.",
-        "Validated APIs using Postman; collaborated in Agile/Scrum environment with Git version control.",
-        "Designed RESTful APIs enabling inter-service communication in a microservice architecture."
+          "Developed and maintained Java/Spring Boot applications, working with REST APIs, application configuration, and
+           database integrations in Linux-based environments."
+          "Containerized applications using Docker and Docker Compose, troubleshooting container startup, networking, port-
+           mapping, environment-variable, and application connectivity issues."
+          "Worked with AWS EC2, IAM, S3 and VPC for application hosting, access management, security-group
+           configuration, and network connectivity."
+          "Supported application build and deployment processes through CI/CD, troubleshooting build failures, dependency
+           issues, configuration errors, and environment related problems."
       ]
     }
   ];
