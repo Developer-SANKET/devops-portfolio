@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { SiTerraform, SiKubernetes, SiDocker, SiGithubactions, SiGrafana, SiPrometheus, SiPython, SiGnubash, SiJenkins, SiHelm } from "react-icons/si";
-import { Terminal, Code, Cpu, Activity, Download, Mail, Github, Linkedin, Network, Layers, GitBranch, ArrowUpRight, Award, Cloud, CloudCog, Sun, Moon, Database, Server } from "lucide-react";
+import { Terminal, Code, Cpu, Activity, Download, Mail, Github, Linkedin, Network, Layers, GitBranch, ArrowUpRight, Award, Cloud, CloudCog, Sun, Moon, Database, Server, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/App";
 
@@ -32,7 +32,7 @@ function Navbar() {
           SP<span className="text-muted-foreground">_</span>
         </div>
         <div className="hidden md:flex items-center space-x-8 text-sm font-mono text-muted-foreground">
-          {['About', 'Skills', 'Projects', 'Experience'].map((item) => (
+          {['About', 'Skills', 'Certifications', 'Projects', 'Experience'].map((item) => (
             <button
               key={item}
               onClick={() => scrollTo(item.toLowerCase())}
@@ -63,7 +63,6 @@ function Navbar() {
               key={theme}
               initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
               animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
               transition={{ duration: 0.25 }}
             >
               {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
@@ -112,9 +111,12 @@ function Hero() {
                 <Mail className="mr-2 h-4 w-4" /> Connect
               </Button>
             </a>
-            <Button size="lg" variant="outline" className="rounded-none border-border hover:bg-muted">
-              <Download className="mr-2 h-4 w-4" /> Download Resume
-            </Button>
+            {/* Put your resume PDF in the /public folder as resume.pdf */}
+            <a href="/resume.pdf" download>
+              <Button size="lg" variant="outline" className="rounded-none border-border hover:bg-muted">
+                <Download className="mr-2 h-4 w-4" /> Download Resume
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>
@@ -269,8 +271,8 @@ function Certifications() {
     { name: "AZ-900 — Azure Fundamentals", issuer: "Microsoft" },
     { name: "AZ-104 — Azure Administrator Associate", issuer: "Microsoft" },
     { name: "AZ-400 — Azure DevOps Expert", issuer: "Microsoft" },
-    { name: "AZ-305 — Azure Soultion architecture", issuer: "Microsoft" },
-    { name: "GH-200 - GitHub Action", issuer: "Microsoft" },
+    { name: "AZ-305 — Azure Solutions Architect Expert", issuer: "Microsoft" },
+    { name: "GH-200 — GitHub Actions", issuer: "Microsoft" },
   ];
 
   return (
@@ -307,12 +309,13 @@ function Certifications() {
 }
 
 function Projects() {
-  const projects = [
+  // Add a `link` (GitHub URL etc.) to any project to show the arrow icon.
+  const projects: { title: string; description: string; tech: string[]; link?: string }[] = [
     {
-  title: "AWS Self-Healing Infrastructure with Amazon Bedrock",
-  description: "Event-driven AIOps platform where Amazon Bedrock reasons about incident root cause, but never touches production directly — every recommendation passes a deterministic safety gate before any remediation executes. A single AIOps control plane (CloudWatch → EventBridge → Lambda → Bedrock → Safety Gate → DynamoDB) is architected to work across EC2, EKS, and ECS, with only the remediation adapter swapping underneath (SSM / Kubernetes API / ECS API). On EKS, the design specifically distinguishes routine Pod self-healing from real incidents like CrashLoopBackOff — so AI intervenes only where Kubernetes' own automation falls short.",
-  tech: ["AWS", "Amazon Bedrock", "AWS Lambda", "Amazon EventBridge", "Amazon CloudWatch", "Amazon EKS", "Kubernetes API", "Amazon ECS", "AWS Systems Manager (SSM)", "Amazon SNS", "Amazon DynamoDB", "FastAPI", "Python", "Terraform"]
-   },
+      title: "AWS Self-Healing Infrastructure with Amazon Bedrock",
+      description: "Event-driven AIOps platform where Amazon Bedrock reasons about incident root cause, but never touches production directly — every recommendation passes a deterministic safety gate before any remediation executes. A single AIOps control plane (CloudWatch → EventBridge → Lambda → Bedrock → Safety Gate → DynamoDB) is architected to work across EC2, EKS, and ECS, with only the remediation adapter swapping underneath (SSM / Kubernetes API / ECS API). On EKS, the design specifically distinguishes routine Pod self-healing from real incidents like CrashLoopBackOff — so AI intervenes only where Kubernetes' own automation falls short.",
+      tech: ["AWS", "Amazon Bedrock", "AWS Lambda", "Amazon EventBridge", "Amazon CloudWatch", "Amazon EKS", "Kubernetes API", "Amazon ECS", "AWS Systems Manager (SSM)", "Amazon SNS", "Amazon DynamoDB", "FastAPI", "Python", "Terraform"]
+    },
     {
       title: "GitOps AKS Deployment Platform",
       description: "Built a production-grade AKS platform serving 150+ microservices using GitOps principles. Provisioned infrastructure with Terraform and Bicep, managed container images via ACR, deployed workloads with Helm and ArgoCD, configured VNet peering and private endpoints, and set up end-to-end observability with Prometheus and Grafana. PostgreSQL and Redis deployed as StatefulSets.",
@@ -352,9 +355,17 @@ function Projects() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform" />
               <div className="flex justify-between items-start mb-6">
                 <Activity className="w-10 h-10 text-primary" />
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <ArrowUpRight className="w-5 h-5" />
-                </a>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={`Open ${project.title}`}
+                  >
+                    <ArrowUpRight className="w-5 h-5" />
+                  </a>
+                )}
               </div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
@@ -396,14 +407,10 @@ function Experience() {
       company: "INDSAC Softech — Remote",
       period: "Apr 2023 — Mar 2024",
       bullets: [
-          "Developed and maintained Java/Spring Boot applications, working with REST APIs, application configuration, and
-           database integrations in Linux-based environments."
-          "Containerized applications using Docker and Docker Compose, troubleshooting container startup, networking, port-
-           mapping, environment-variable, and application connectivity issues."
-          "Worked with AWS EC2, IAM, S3 and VPC for application hosting, access management, security-group
-           configuration, and network connectivity."
-          "Supported application build and deployment processes through CI/CD, troubleshooting build failures, dependency
-           issues, configuration errors, and environment related problems."
+        "Developed and maintained Java/Spring Boot applications, working with REST APIs, application configuration, and database integrations in Linux-based environments.",
+        "Containerized applications using Docker and Docker Compose, troubleshooting container startup, networking, port-mapping, environment-variable, and application connectivity issues.",
+        "Worked with AWS EC2, IAM, S3 and VPC for application hosting, access management, security-group configuration, and network connectivity.",
+        "Supported application build and deployment processes through CI/CD, troubleshooting build failures, dependency issues, configuration errors, and environment related problems."
       ]
     }
   ];
@@ -510,8 +517,6 @@ function Contact() {
     </section>
   );
 }
-
-import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
